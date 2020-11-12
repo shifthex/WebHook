@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Green Apple API updater</title>
+</head>
+<body>
+	<h1>Green Apple Update Status</h1>
+	<div class="result">Data</div>
+	<select name="" id="tbox">
+		<option value="sent">Sent</option>
+		<option value="pending">Pending</option>
+		<option value="success">Success</option>
+		<option value="failed">Failed</option>
+	</select>
+	<input id="update" type="button" value="submit">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script> 
+		$('#update').on('click',function(){
+			let valu = $('#tbox').val();
+			console.log('input',valu);
+			$.post('/updateStatus',{data:valu},function(data){
+					console.log('res',data);
+			});
+		});
+	</script>
+</body>
+</html>

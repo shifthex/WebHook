@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Webhook Test Client</title>
+	<style>
+        body{
+            padding: 10%;
+            font-family: sans-serif;
+        }
+
+       .card{
+            width: fit-content;
+            background: #f8f8f8;
+            border-radius: 5px;
+            border: 1px solid #eee;
+            padding: 10px;
+        }
+
+        span{
+            font-size: 21px; 
+            opacity: 0.75;
+        }
+    </style>
+</head>
+<body> 
+	<div class="card">
+        <h6 class="op">Webhook Test Client</h6> 
+		Status:<span id="data-container"></span> 
+    </div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	  <script>
+        let sse = new EventSource("http://localhost:1000/stream"); 
+        sse.onmessage = (res) =>{ 
+			console.log(res);
+            $('#data-container').text(res.data);
+        };
+    </script>
+</body>
+</html>
